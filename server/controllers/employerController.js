@@ -38,8 +38,8 @@ const createEmployer = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: process.env.USER_EMAIL,
-          pass: process.env.USER_PASS
+          user: "rec@kosichi.ca",
+          pass: "Rec2024_"
         },
       });
 
@@ -75,6 +75,7 @@ const createEmployer = async (req, res) => {
             `,
         };
         
+        console.log("emailing");
         try {
             const info = await transporter.sendMail(mailOptions);
             console.log("Email sent:", info.response);
@@ -116,8 +117,8 @@ const createEmployee = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: process.env.USER_EMAIL,
-          pass: process.env.USER_PASS
+          user: "rec@kosichi.ca",
+          pass: "Rec2024_"
         },
       });
 
@@ -130,7 +131,8 @@ const createEmployee = async (req, res) => {
             company_id: company_id
         })  
 
-        newEmployee.save().then(
+        console.log("Creating Employee V2.")
+        await newEmployee.save().then(
             savedEmployee => {
                 userToken = savedEmployee._id;
             })
