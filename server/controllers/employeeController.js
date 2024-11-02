@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const Employee = require('../models/employee');
 
 const registerEmployee = async(req, res)=>{
