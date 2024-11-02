@@ -102,12 +102,12 @@ const createEmployee = async (req, res) => {
 
     const existingEmployee = await Employee.findOne({ email });
     if (existingEmployee) {
-        return res.status(400).json({ message: "An employee with this email already exists." });
+        return res.json({ message: "An employee with this email already exists." });
     }
 
     const existingEmployer = await Employer.findOne({ email });
     if (existingEmployer) {
-        return res.status(400).json({ message: "An employer with this email already exists." });
+        return res.json({ message: "An employer with this email already exists." });
     }
 
     var userToken = null;
@@ -161,7 +161,7 @@ const createEmployee = async (req, res) => {
             }
         }
 
-        res.json({status: 200, data: newEmployer});
+        res.json({status: 200, data: newEmployee});
     }
     catch(error){
         res.status(500).json({ message: "Internal server error" });
