@@ -10,9 +10,71 @@ function Register() {
   const [password, setPassword] = useState('');
   const [positionsList, setPositionsList] = useState('');
 
+
+  const [errorPassword, setErrorPassword] = useState('Password is required');
+  const [errorEmail, setErrorEmail] = useState('Please enter a valid email');
+  const [errorCompany, setErrorCompany] = useState('Company Name is required');
+  const [errorList, setErrorList] = useState('Companys List of positions is required');
+
+  const handleInputChangePassword = (e) => {
+      const value = e.target.value;
+      setPassword(value);
+
+      if (!value.trim()) {
+          setErrorPassword('Password is required');
+      } else {
+          setErrorPassword('');
+      }
+  };
+
+  const handleInputChangeCompany = (e) => {
+    const value = e.target.value;
+    setCompanyName(value);
+
+    if (!value.trim()) {
+        setErrorCompany('Company Name is required');
+    } else {
+        setErrorCompany('');
+    }
+};
+
+const handleInputChangeList = (e) => {
+  const value = e.target.value;
+  setPositionsList(value);
+
+  if (!value.trim()) {
+      setErrorList('Companys List of positions is required');
+  } else {
+      setErrorList('');
+  }
+};
+
+  const isEmailValid = (email) => {
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailPattern.test(email);
+  };
+
+  const handleInputChangeEmail = (e) => {
+      const value = e.target.value;
+      setEmail(value);
+
+      if (!isEmailValid(value)) {
+          setErrorEmail('Please enter a valid email');
+      } else {
+          setErrorEmail('');
+      }
+  };
+
+
+
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!errorPassword && !errorEmail && !errorCompany && !errorList) {
+    
     try {
       const roles = positionsList.split(',').map(role => role.trim());
 
@@ -41,7 +103,11 @@ function Register() {
       console.error("Error submitting form:", error);
       alert('Network error: ' + error.message);
     }
+  }
   };
+
+
+
 
   return (
     <div
@@ -56,8 +122,10 @@ function Register() {
               type="text"
               placeholder="Enter company name"
               value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-            />
+              onChange={handleInputChangeCompany}
+          />
+          {errorCompany && <div className="text-danger">{errorCompany}</div>}
+
           </div>
           <div className="col-md-6">
             <label className="form-label">Email address</label>
@@ -66,8 +134,9 @@ function Register() {
               type="email"
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={ handleInputChangeEmail}
             />
+             {errorEmail && <div className="text-danger">{errorEmail}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label">Password</label>
@@ -76,8 +145,10 @@ function Register() {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange= {handleInputChangePassword}
             />
+            {errorPassword && <div className="text-danger">{errorPassword}</div>}
+
           </div>
           <div className="col-12">
             <label className="form-label">Positions List</label>
@@ -85,8 +156,10 @@ function Register() {
               className="form-control"
               placeholder="Enter company positions, separated by a comma"
               value={positionsList}
-              onChange={(e) => setPositionsList(e.target.value)}
-            />
+              onChange={handleInputChangeList}
+          />
+          {errorList && <div className="text-danger">{errorList}</div>}
+
           </div>
           <button type="submit" className="btn btn-primary mb-0">
             Submit Company Information
