@@ -11,7 +11,7 @@ function Login() {
   const handleInputChangePassword = (e) => {
     const value = e.target.value;
     setInputPassword(value);
-    
+
     if (!value.trim()) {
       setErrorPassword('Password is required');
     } else {
@@ -26,7 +26,7 @@ function Login() {
   const handleInputChangeEmail = (e) => {
     const value = e.target.value;
     setInputEmail(value);
-    
+
     if (!isEmailValid(value)) {
       setErrorEmail('Please enter a valid email');
     } else {
@@ -42,31 +42,34 @@ function Login() {
 
 
   return (
-      <div 
+    <div
       className="d-flex justify-content-center align-items-center vh-100"
     >
-      <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px"}}>
-       
-      <form class="row g-3" onSubmit={handleSubmit}>
-      <p className="lead text-center">Login to your account</p>
-      <div className="col-md-6" >
-        <div class="form-label">Email</div>
-        <input class="form-control" placeholder="Email" value={inputEmail} 
-              onChange={handleInputChangeEmail} 
+      <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
+
+        <form class="row g-3" onSubmit={handleSubmit}>
+          <p className="lead text-center">Login to your account</p>
+          <div className="col-md-6" >
+            <div class="form-label">Email</div>
+            <input class="form-control" placeholder="Email" value={inputEmail}
+              onChange={handleInputChangeEmail}
             />
             {errorEmail && <div className="text-danger">{errorEmail}</div>}
-          
+
+          </div>
+          <div className="col-md-6" >
+            <div class="form-label">Password</div>
+            <input class="form-control" type="password" placeholder="Password" value={inputPassword} onChange={handleInputChangePassword} />
+            {errorPassword && <div className="text-danger">{errorPassword}</div>}
+
+          </div>
+
+          <button type="button" class="btn btn-primary" onClick={handleSubmit}>Login</button>
+          <button type="button" className="btn btn-secondary mb-3" onClick={() => window.location.href = '/'}>
+            Back to Home
+          </button>
+        </form>
       </div>
-      <div className="col-md-6" >
-        <div class="form-label">Password</div>
-        <input class="form-control" type="password" placeholder="Password" value={inputPassword} onChange={handleInputChangePassword}  />
-        {errorPassword && <div className="text-danger">{errorPassword}</div>}
-          
-     </div>
-  
-      <button type="button" class="btn btn-primary mb-3" onClick={handleSubmit}>Login</button>
-    </form>
-    </div>
     </div>
   )
 }
