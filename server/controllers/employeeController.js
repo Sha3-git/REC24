@@ -15,20 +15,6 @@ const registerEmployee = async(req, res)=>{
     }
 }
 
-const loginEmployee = async(req, res)=>{
-    const {email, password} = req.body;
-    console.log(typeof(email));
-    try{
-        const result = Employee.find({email: email, password: password});
-        if (!result) {
-            return res.json({ status: 404, message: "Login failed" });
-        }
-        res.json({status: 200, data: result[0]})
-    }catch(error){
-        console.log(error)
-    }
-}
 module.exports = {
     registerEmployee,
-    loginEmployee
 }
