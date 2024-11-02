@@ -1,4 +1,16 @@
+import axios from 'axios';
+import { useState } from 'react';
+
+
 function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleSubmit = (e)=>{
+        axios.post("http://localhost:4000/api/employees/login",{
+            email: email,
+            password:password
+        })
+    }
   return (
       <div 
       className="d-flex justify-content-center align-items-center vh-100"
@@ -9,14 +21,14 @@ function Login() {
       <p className="lead text-center">Login to your account</p>
       <div className="col-md-6" controlId="formBasicPassword">
         <div class="form-label">Email</div>
-        <input class="form-control" placeholder="Email" />
+        <input class="form-control" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
       </div>
       <div className="col-md-6" controlId="formBasicPassword">
         <div class="form-label">Re-Enter Password</div>
-        <input class="form-control" type="password" placeholder="Password" />
+        <input class="form-control" type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>
       </div>
   
-      <button type="submit" class="btn btn-primary mb-3">Register for your company</button>
+      <button type="button" class="btn btn-primary mb-3" onClick={handleSubmit}>Login</button>
     </form>
     </div>
     </div>
