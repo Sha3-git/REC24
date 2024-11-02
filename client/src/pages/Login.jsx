@@ -51,19 +51,11 @@ function Login() {
       <p className="lead text-center">Login to your account</p>
       <div className="col-md-6" >
         <div class="form-label">Email</div>
-<<<<<<< HEAD
-        <input class="form-control" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
-      </div>
-      <div className="col-md-6" controlId="formBasicPassword">
-        <div class="form-label">Re-Enter Password</div>
-        <input class="form-control" type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>
-=======
         <input class="form-control" placeholder="Email" value={inputEmail} 
               onChange={handleInputChangeEmail} 
             />
             {errorEmail && <div className="text-danger">{errorEmail}</div>}
           
->>>>>>> 012b20b12d6d9e27363ea0fa4f3319934ef907b9
       </div>
       <div className="col-md-6" >
         <div class="form-label">Password</div>
