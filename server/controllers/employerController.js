@@ -3,6 +3,33 @@ const nodemailer = require('nodemailer');
 const Employee = require('../models/employee');
 const Employer = require('../models/employer');
 
+const getEmployerById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const employer = await Employer.findById(id);
+        if (!employer) {
+            return res.status(404).json({ message: "Employer not found" });
+        }
+        res.status(200).json({ status: 200, data: employer });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+const getEmployeesByEmployerId = async (req, res) => {
+    const { employerId } = req.params;
+    try {
+        const employees = await Employee.find({ company_id: employerId }); 
+        if (!employees || employees.length === 0) {
+            return res.status(404).json({ message: "No employees found" });
+        }
+        res.status(200).json({ status: 200, data: employees });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
 
 const createEmployer = async (req, res) => {
     console.log("Creating Employer.")
@@ -20,6 +47,11 @@ const createEmployer = async (req, res) => {
         const existingEmployer = await Employer.findOne({ email });
         if (existingEmployer) {
             return res.status(400).json({ message: "An employer with this email already exists." });
+        }
+
+        const existingEmployee = await Employee.findOne({ email });
+        if (existingEmployee) {
+            return res.status(400).json({ message: "An employee with this email already exists." });
         }
 
         console.log(roles);
@@ -67,6 +99,17 @@ const createEmployer = async (req, res) => {
 const createEmployee = async (req, res) => {
     console.log("Creating Employee.")
     const {first_name, last_name, email, password, company_id} = req.body;
+
+    const existingEmployee = await Employee.findOne({ email });
+    if (existingEmployee) {
+        return res.status(400).json({ message: "An employee with this email already exists." });
+    }
+
+    const existingEmployer = await Employer.findOne({ email });
+    if (existingEmployer) {
+        return res.status(400).json({ message: "An employer with this email already exists." });
+    }
+
     var userToken = null;
     const transporter = nodemailer.createTransport({
         host: 'kosichi.ca',
@@ -141,6 +184,8 @@ const promoteEmployees = async(req, res) =>{
     }
 }
 module.exports = {
+    getEmployerById,
+    getEmployeesByEmployerId,
     createEmployer,
     createEmployee,
     promoteEmployees
