@@ -36,7 +36,11 @@ function Employee() {
         <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
                 <p className="lead">Hello, {userData.first_name} {userData.last_name}!</p>
-                <p className="lead">Your current position is: {userData.role}</p>
+                {userData.role ?
+                    <p className="lead">Your current position is: {userData.role}</p>
+                    :
+                    <p className="lead">You have not been assigned a role yet.</p>
+                }
                 <p className="lead">At: {companyName ? companyName : 'Loading...'}</p> 
             </div>
         </div>

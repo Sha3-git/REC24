@@ -43,7 +43,7 @@ function Employer() {
       first_name: first,
       last_name: last,
       email: email,
-      company_id: user.company_id 
+      company_id: user._id 
     })
     setShowModal(false);
     setFirst('');
