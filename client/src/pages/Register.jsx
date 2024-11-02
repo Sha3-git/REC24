@@ -88,7 +88,7 @@ function Register() {
               onChange={(e) => setPositionsList(e.target.value)}
             />
           </div>
-          <button type="submit" className="btn btn-primary mb-3">
+          <button type="submit" className="btn btn-primary mb-0">
             Submit Company Information
           </button>
           <button type="button" className="btn btn-secondary mb-3" onClick={() => window.location.href = '/'}>
