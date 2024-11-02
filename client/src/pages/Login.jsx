@@ -34,14 +34,16 @@ function Login() {
             setErrorEmail('');
         }
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4000/api/login/login',
+        const response = await axios.post('http://localhost:4000/api/login/login',
             {
                 email: inputEmail,
                 password: inputPassword,
             }
         )
+        const {data} = response.data;
+        localStorage.setItem('user', JSON.stringify(data));
         if (!errorPassword && !errorEmail) {
         }
     };
