@@ -11,6 +11,7 @@ function Employer() {
 
   const handleRank = (id, rank) => {
     setRank(prev => ({ ...prev, [id]: rank }));
+    promoteEmployee(id, rank);
   };
 
   const promoteEmployee = async (id, rank) => {
