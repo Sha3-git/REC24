@@ -50,11 +50,7 @@ const createEmployer = async (req, res) => {
             console.error("Error sending email:", error.message);
         }
 
-<<<<<<< Updated upstream
-        res.json({status: 200, data: newEmployer});
-=======
         return res.status(200).json({ status: 200, data: newEmployer });
->>>>>>> Stashed changes
     }
     catch (error) {
         if (error.code === 11000) {
