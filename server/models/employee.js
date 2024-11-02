@@ -8,7 +8,8 @@ const employeeSchema = new mongoose.Schema({
     unique: true
   },
   password: String,
-  company_id: mongoose.Schema.Types.ObjectId
+  company_id: mongoose.Schema.Types.ObjectId,
+  role: String,
 });
 
 const employee = new mongoose.model("employee", employeeSchema);
