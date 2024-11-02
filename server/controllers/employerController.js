@@ -60,3 +60,8 @@ const createEmployee = async (req, res) => {
         console.error(error);
     }
 }
+
+const promoteEmployees
+module.exports = {
+    createEmployee,
+}
