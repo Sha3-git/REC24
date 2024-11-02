@@ -1,6 +1,12 @@
+import Header from "../components/Header"
+
 function Register() {
+
   return (
-    <div>Register</div>
+    <>
+    <Header/>
+    Register
+    </>
   )
 }
 
