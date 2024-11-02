@@ -30,16 +30,38 @@ function Employer() {
       </div>
 
       {showModal && (
-        <div className="modal show d-block" tabIndex="-1" role="dialog">
+        <div className="modal show d-flex justify-content-center align-items-center vh-100" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header justify-content-between">
                 <h5 className="modal-title">Send Employee Onboarding</h5>
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
               </div>
               <div className="modal-body">
-              <input class="form-control" type="email" placeholder="Enter email" />
-              <button type="button" className="btn btn-primary" onClick={updateOnboarding}>Send</button>
-              <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+              <form class="row g-3">
+    <div className="col-md-6"  >
+      <div class="form-label">First Name</div>
+      <input class="form-control" type="firstName" placeholder="First Name" />
+
+    </div>
+    <div className="col-md-6" >
+      <div class="form-label">Last Name</div>
+      <input class="form-control" type="lastName" placeholder="Last Name" />
+    </div>
+
+     <div className="col-md-6"  >
+      <div class="form-label">Email address</div>
+      <input class="form-control" type="email" placeholder="Enter email" />
+
+    </div>
+    <div className="col-md-6" controlId="formBasicPassword">
+      <div class="form-label">Password</div>
+      <input class="form-control" type="password" placeholder="Password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-3 ">Register for your company</button>
+  </form>
+              
               </div>
             </div>
           </div>
