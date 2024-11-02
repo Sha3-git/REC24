@@ -12,28 +12,36 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const roles = positionsList.split(',').map(role => role.trim());
-
+    
     try {
-      const response = await axios.post('/api/employers/register', {
-          company_name: companyName,
-          roles,
-          email,
-          password
-      });
+        const roles = positionsList.split(',').map(role => role.trim());
 
-      const data = await response.json();
-      if (response.ok) {
-        alert("Employer created successfully!");
-        navigate("/login");
-      } else {
-        alert(`Error: ${data.message}`);
-      }
+        const response = await fetch("http://localhost:4000/api/employers/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                company_name: companyName,
+                roles,
+                email,
+                password
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert("Employer created successfully!");
+            navigate("/login");
+        } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message || 'An error occurred'}`);
+        }
     } catch (error) {
-      console.log("Error submitting form:", error);
+        console.error("Error submitting form:", error);
+        alert('Network error: ' + error.message);
     }
-  };
+};
 
   return (
     <div className="mx-auto p-2">
