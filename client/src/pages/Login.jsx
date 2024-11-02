@@ -36,7 +36,7 @@ function Login() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4000/api/employees/login',
+        axios.post('http://localhost:4000/api/login/login',
             {
                 email: inputEmail,
                 password: inputPassword,
