@@ -10,16 +10,10 @@ const login = async(req, res)=>{
     
         let user;
         if (employee) {
-            const match = await bcrypt.compare(password, employee.password);
-            if (match) {
-                user = { userType: 'employee', data: employee };
-            }
+            user = { userType: 'employee', data: employee };
         } 
         if (employer) {
-            const match = await bcrypt.compare(password, employer.password);
-            if (match) {
-                user = { userType: 'employer', data: employer };
-            }
+            user = { userType: 'employer', data: employer };
         }
 
         if (!user) {

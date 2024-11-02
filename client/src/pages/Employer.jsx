@@ -14,13 +14,13 @@ function Employer() {
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
         <p className="lead">Welcome to your company name's dashboard!</p>
-        
+
         <div className="row g-3">
           <div className="col-md-6">
             <div className="form-label">Positions Available</div>
             <div className="form-label">List positions</div>
           </div>
-          
+
           <div className="col-md-6">
             <button type="button" className="btn btn-primary" onClick={openModal}>
               Register an Employee
@@ -38,30 +38,30 @@ function Employer() {
                 <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
               </div>
               <div className="modal-body">
-              <form class="row g-3">
-    <div className="col-md-6"  >
-      <div class="form-label">First Name</div>
-      <input class="form-control" type="firstName" placeholder="First Name" />
+                <form class="row g-3">
+                  <div className="col-md-6"  >
+                    <div class="form-label">First Name</div>
+                    <input class="form-control" type="firstName" placeholder="First Name" />
 
-    </div>
-    <div className="col-md-6" >
-      <div class="form-label">Last Name</div>
-      <input class="form-control" type="lastName" placeholder="Last Name" />
-    </div>
+                  </div>
+                  <div className="col-md-6" >
+                    <div class="form-label">Last Name</div>
+                    <input class="form-control" type="lastName" placeholder="Last Name" />
+                  </div>
 
-     <div className="col-md-6"  >
-      <div class="form-label">Email address</div>
-      <input class="form-control" type="email" placeholder="Enter email" />
+                  <div className="col-md-6"  >
+                    <div class="form-label">Email address</div>
+                    <input class="form-control" type="email" placeholder="Enter email" />
 
-    </div>
-    <div className="col-md-6" controlId="formBasicPassword">
-      <div class="form-label">Password</div>
-      <input class="form-control" type="password" placeholder="Password" />
-    </div>
+                  </div>
+                  <div className="col-md-6" controlId="formBasicPassword">
+                    <div class="form-label">Password</div>
+                    <input class="form-control" type="password" placeholder="Password" />
+                  </div>
 
-    <button type="submit" class="btn btn-primary mb-3 ">Register for your company</button>
-  </form>
-              
+                  <button type="submit" class="btn btn-primary mb-3 ">Register for your company</button>
+                </form>
+
               </div>
             </div>
           </div>

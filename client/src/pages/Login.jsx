@@ -42,10 +42,14 @@ function Login() {
                 password: inputPassword,
             }
         )
-        const {data} = response.data;
-        localStorage.setItem('user', JSON.stringify(data));
-        if (!errorPassword && !errorEmail) {
-        }
+        const data = response.data;
+        localStorage.setItem('userType', JSON.stringify(response.data.userType));
+        localStorage.setItem('user', JSON.stringify(response.data.data));
+        if (response.data.userType === 'employee') {
+          window.location.href = '/employee'; 
+      } else if (response.data.userType === 'employer') {
+          window.location.href = '/employer'; 
+      }
     };
 
 
@@ -56,24 +60,24 @@ function Login() {
         >
             <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
 
-                <form class="row g-3" onSubmit={handleSubmit}>
+                <form className="row g-3" onSubmit={handleSubmit}>
                     <p className="lead text-center">Login to your account</p>
                     <div className="col-md-6" >
-                        <div class="form-label">Email</div>
-                        <input class="form-control" placeholder="Email" value={inputEmail}
+                        <div className="form-label">Email</div>
+                        <input className="form-control" placeholder="Email" value={inputEmail}
                             onChange={handleInputChangeEmail}
                         />
                         {errorEmail && <div className="text-danger">{errorEmail}</div>}
 
                     </div>
                     <div className="col-md-6" >
-                        <div class="form-label">Password</div>
-                        <input class="form-control" type="password" placeholder="Password" value={inputPassword} onChange={handleInputChangePassword} />
+                        <div className="form-label">Password</div>
+                        <input className="form-control" type="password" placeholder="Password" value={inputPassword} onChange={handleInputChangePassword} />
                         {errorPassword && <div className="text-danger">{errorPassword}</div>}
 
                     </div>
 
-                    <button type="button" class="btn btn-primary mb-3" onClick={handleSubmit}>Login</button>
+                    <button type="button" className="btn btn-primary mb-3" onClick={handleSubmit}>Login</button>
                 </form>
             </div>
         </div>
