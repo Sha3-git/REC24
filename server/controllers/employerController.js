@@ -40,7 +40,7 @@ const createEmployer = async (req, res) => {
             console.error("Error sending email:", error.message);
         }
 
-        res.Json({status: 200, data: newEmployer});
+        res.json({status: 200, data: newEmployer});
     }
     catch(error){
         res.status(500).json({ message: "Internal server error" });
@@ -103,7 +103,7 @@ const createEmployee = async (req, res) => {
             }
         }
 
-        res.Json({status: 200, data: newEmployer});
+        res.json({status: 200, data: newEmployer});
     }
     catch(error){
         res.status(500).json({ message: "Internal server error" });
