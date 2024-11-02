@@ -26,3 +26,7 @@ app.use(cors());
 app.use(cors({
   origin: 'https://yourdeployedsite.com'
 }))
+
+const EmployerRoutes = require('./routes/employerRoutes');
+
+app.use('/api/employers', EmployerRoutes);
