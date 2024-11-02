@@ -8,7 +8,10 @@ function Home() {
           <p className="lead">Employee Dashboard Homepage! Feel free to sign up your company to organize your company today!</p>
           <hr className="my-4" />
           <p className="lead">
-            <a className="btn btn-primary btn-lg" href="#" role="button">Log In/Register</a>
+            <a className="btn btn-primary btn-lg mb-1" href="/login" role="button">Log In</a>
+          </p>
+          <p className="lead">
+            <a className="btn btn-primary btn-lg" href="/register" role="button">Register</a>
           </p>
         </div>
       </div>
