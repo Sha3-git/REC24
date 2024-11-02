@@ -17,12 +17,14 @@ function Employer() {
 
 
   useEffect(() => {
+    console.log(user._id);
     const fetchEmployees = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/employers/getEmployeesByEmployerId/${user.company_id}`);
+        const response = await fetch(`http://localhost:4000/api/employers/getEmployeesByEmployerId/${user._id}`);
         const data = await response.json();
         if (response.ok) {
           setEmployees(data.data);
+          console.log(employees);
         } else {
           console.error('Error fetching employees:', data.message);
         }
@@ -32,7 +34,7 @@ function Employer() {
     };
 
     fetchEmployees();
-  }, [user.company_id]);
+  }, [user._id]);
 
 
 

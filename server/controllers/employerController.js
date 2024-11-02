@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
 
 const Employee = require('../models/employee');
 const Employer = require('../models/employer');
@@ -18,12 +19,15 @@ const getEmployerById = async (req, res) => {
 };
 
 const getEmployeesByEmployerId = async (req, res) => {
-    const { employerId } = req.params;
+    console.log(req.params);
+    const employerId = req.params;
     try {
-        const employees = await Employee.find({ company_id: employerId }); 
+        var employees = await Employee.find({ company_id: new mongoose.Types.ObjectId(employerId) }); 
+        console.log(employees);
         if (!employees || employees.length === 0) {
             return res.status(404).json({ message: "No employees found" });
         }
+        console.log(employees);
         res.status(200).json({ status: 200, data: employees });
     } catch (error) {
         console.error(error);
