@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from "../components/Header"
 
 function Register() {
@@ -29,6 +30,7 @@ function Register() {
         const data = await response.json();
         if (response.ok) {
             alert("Employer created successfully!");
+            navigate("/login");
         } else {
             alert(`Error: ${data.message}`);
         }

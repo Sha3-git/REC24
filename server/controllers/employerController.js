@@ -3,6 +3,7 @@ const Employer = require('../models/employer');
 
 
 const createEmployer = async (req, res) => {
+    console.log("Creating Employer.")
     const {company_name, roles, email, password} = req.body;    const transporter = nodemailer.createTransport({
         host: 'kosichi.ca',
         port: 465,
@@ -49,6 +50,7 @@ const createEmployer = async (req, res) => {
 
 
 const createEmployee = async (req, res) => {
+    console.log("Creating Employee.")
     const {first_name, last_name, email, password, company_id} = req.body;
     var userToken = null;
     const transporter = nodemailer.createTransport({
@@ -110,6 +112,7 @@ const createEmployee = async (req, res) => {
 }
 
 const promoteEmployees = async(req, res) =>{
+    console.log("Promoting Employee.")
     const {id, role} = req.body;
     try{
         const result = await Employee.findByIdAndUpdate(id, {role: role});
