@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 function Employer() {
   const [sendOnboarding, setSendOnboarding] = useState(false);
@@ -7,6 +7,25 @@ function Employer() {
   const [email, setEmail] = useState('')
   const [employees, setEmployees] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [rank, setRank] = useState({});
+
+  const handleRank = (id, rank) => {
+    setRank(prev => ({ ...prev, [id]: rank }));
+  };
+
+  const promoteEmployee = async (id, rank) => {
+    try {
+      const response = await axios.put('http://localhost:4000/api/employers/promote', { id, role: rank });
+      if (response.data.status === 200) {
+        console.log("Employee promoted successfully.");
+      } else {
+        console.log("No employee found with that ID.");
+      }
+    } catch (error) {
+      console.error("Error promoting employee:", error);
+    }
+  };
+
   const openModal = () => setShowModal(true);
 
   const closeModal = () => setShowModal(false);
@@ -40,7 +59,7 @@ function Employer() {
 
 
   console.log(user);
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     axios.post("http://localhost:4000/api/employers/create", {
       first_name: first,
       last_name: last,
@@ -65,6 +84,29 @@ function Employer() {
               {employees.map(employee => (
                 <li key={employee._id} className="list-group-item">
                   {employee.first_name} {employee.last_name} - {employee.email}
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id={`dropdown-${employee._id}`}
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Select Rank
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby={`dropdown-${employee._id}`}>
+                      {[1, 2, 3, 4, 5].map(rank => (
+                        <li key={rank}>
+                          <button
+                            className="dropdown-item"
+                            onClick={() => handleRank(employee._id, rank)}
+                          >
+                            Rank {rank}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -90,17 +132,17 @@ function Employer() {
                 <form class="row g-3">
                   <div className="col-md-6"  >
                     <div class="form-label">First Name</div>
-                    <input class="form-control" type="firstName" placeholder="First Name" value={first} onChange={(e)=>{setFirst(e.target.value)}}/>
+                    <input class="form-control" type="firstName" placeholder="First Name" value={first} onChange={(e) => { setFirst(e.target.value) }} />
 
                   </div>
                   <div className="col-md-6" >
                     <div class="form-label">Last Name</div>
-                    <input class="form-control" type="lastName" placeholder="Last Name" value={last} onChange={(e)=>{setLast(e.target.value)}}/>
+                    <input class="form-control" type="lastName" placeholder="Last Name" value={last} onChange={(e) => { setLast(e.target.value) }} />
                   </div>
 
                   <div className="col-md-6"  >
                     <div class="form-label">Email address</div>
-                    <input class="form-control" type="email" placeholder="Enter email" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+                    <input class="form-control" type="email" placeholder="Enter email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                   </div>
 
                   <button type="button" class="btn btn-primary mb-3 " onClick={handleSubmit}>Register for your company</button>

@@ -32,6 +32,11 @@ function Employee() {
         });
     }, []);
 
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        window.location.href = '/';
+    };
+
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
@@ -42,6 +47,7 @@ function Employee() {
                     <p className="lead">You have not been assigned a role yet.</p>
                 }
                 <p className="lead">At: {companyName ? companyName : 'Loading...'}</p> 
+                <button onClick={handleLogout} className="btn btn-primary">Logout</button>
             </div>
         </div>
     );
