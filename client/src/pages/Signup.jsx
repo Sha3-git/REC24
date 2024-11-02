@@ -11,7 +11,7 @@ function Signup() {
     <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px"}}>
      
     <form class="row g-3">
-
+    <p className="lead text-center">Welcome to the onboarding, enter your password to complete the registration</p>
     <div className="col-md-6" controlId="formBasicPassword">
       <div class="form-label">Password</div>
       <input class="form-control" type="password" placeholder="Password" />
