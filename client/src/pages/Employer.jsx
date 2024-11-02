@@ -99,7 +99,7 @@ function Employer() {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      Select Rank
+                      Select Role
                     </button>
                     <ul className="dropdown-menu" aria-labelledby={`dropdown-${employee._id}`}>
                       {roles.map(rank => (
@@ -108,7 +108,7 @@ function Employer() {
                             className="dropdown-item"
                             onClick={() => handleRank(employee._id, rank)}
                           >
-                            Rank {rank}
+                            {rank}
                           </button>
                         </li>
                       ))}
