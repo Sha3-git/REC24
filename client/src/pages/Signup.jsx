@@ -5,7 +5,11 @@ import axios from 'axios';
 function Signup() {
     //guid based redirection
   return (
-    <div className="mx-auto p-2" >
+    <div 
+    className="d-flex justify-content-center align-items-center vh-100"
+  >
+    <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px"}}>
+     
     <form class="row g-3">
     <div className="col-md-6"  >
       <div class="form-label">First Name</div>
@@ -29,6 +33,7 @@ function Signup() {
 
     <button type="submit" class="btn btn-primary mb-3">Register for your company</button>
   </form>
+  </div>
   </div>
   )
 }
