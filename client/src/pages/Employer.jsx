@@ -12,6 +12,7 @@ function Employer() {
   const handleRank = (id, rank) => {
     setRank(prev => ({ ...prev, [id]: rank }));
     promoteEmployee(id, rank);
+    window.location.reload();
   };
 
   const promoteEmployee = async (id, rank) => {
@@ -66,7 +67,7 @@ function Employer() {
       first_name: first,
       last_name: last,
       email: email,
-      company_id: user._id 
+      company_id: user._id
     })
     setShowModal(false);
     setFirst('');
@@ -85,7 +86,11 @@ function Employer() {
             <ul className="list-group">
               {employees.map(employee => (
                 <li key={employee._id} className="list-group-item">
-                  {employee.first_name} {employee.last_name} - {employee.email}
+                  {employee.first_name} {employee.last_name}
+                  <br></br>
+                  {employee.role ? employee.role : "No role set."}
+                  <br></br>
+                  {employee.email}
                   <div className="dropdown">
                     <button
                       className="btn btn-secondary dropdown-toggle"
