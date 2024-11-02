@@ -26,6 +26,7 @@ function Employer() {
     } catch (error) {
       console.error("Error promoting employee:", error);
     }
+    window.location.reload();
   };
 
   const openModal = () => setShowModal(true);
@@ -73,6 +74,7 @@ function Employer() {
     setFirst('');
     setLast('');
     setEmail('');
+    window.location.reload();
   }
 
   return (
