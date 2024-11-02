@@ -3,7 +3,16 @@ const Employer = require('../models/employer');
 
 
 const createEmployer = async (req, res) => {
-    const {company_name, roles, email, password} = req.body;
+    const {company_name, roles, email, password} = req.body;    const transporter = nodemailer.createTransport({
+        host: 'kosichi.ca',
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.USER_EMAIL,
+          pass: process.env.USER_PASS
+        },
+      });
+
     try{
         const newEmployer = new Employee({
             company_name: company_name,
@@ -13,6 +22,22 @@ const createEmployer = async (req, res) => {
         })  
 
         newEmployer.save()
+
+        const mailOptions = {
+            from: '"REC Kosichi" <rec@kosichi.ca>',
+            to: email,
+            subject: "REC Kosichi | New Employer Registration",
+            html: `
+            <p>Company Registered: ${company_name}</p> 
+            `,
+        };
+        
+        try {
+            const info = await transporter.sendMail(mailOptions);
+            console.log("Email sent:", info.response);
+        } catch (error) {
+            console.error("Error sending email:", error.message);
+        }
 
         res.Json({status: 200, data: newEmployer});
     }
@@ -61,7 +86,7 @@ const createEmployee = async (req, res) => {
             const mailOptions = {
                 from: '"REC Kosichi" <rec@kosichi.ca>',
                 to: email,
-                subject: "REC Kosichi | New User Registration",
+                subject: "REC Kosichi | New Employee Registration",
                 html: `
                 <p>Please complete the user registration on the following:</p>
                 <a href="${userUrl}">${userUrl}</a>
