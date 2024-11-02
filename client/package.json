@@ -42,6 +42,6 @@
   },
   "options": {
     "allowedHosts": ["localhost", ".localhost"],
-    "proxy": "https://localhost:4000"
+    "proxy": "https://localhost:4000/"
   }
 }
