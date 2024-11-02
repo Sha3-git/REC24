@@ -61,7 +61,9 @@ const createEmployee = async (req, res) => {
     }
 }
 
-const promoteEmployees
+const promoteEmployees = async(req, res) =>{
+    
+}
 module.exports = {
     createEmployee,
 }
