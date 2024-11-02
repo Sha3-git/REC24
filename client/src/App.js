@@ -5,15 +5,10 @@ import Home from './pages/Home.jsx'
 import Signup from './pages/Signup.jsx';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
+import Employee from './pages/Employee.jsx';
+import Employer from './pages/Employer.jsx';
 
 function App() {
-  /*
-   <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Home />} />
-          </Routes>
-    </BrowserRouter>
-  */
   return (
     <BrowserRouter>
       <Routes>
@@ -21,9 +16,10 @@ function App() {
         <Route path='/register' element={<Register />} /> {/*employers*/}
         <Route path='/login' element={<Login />} /> {/*employees and employers*/}
         <Route path='/signup/:id' element={<Signup />} /> {/*employees*/}
+        <Route path='/employee/:id' element={<Employee />} /> {/*employee information*/}
+        <Route path='/employer/:id' element={<Employer />} /> {/*employer dashboard*/}
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;
