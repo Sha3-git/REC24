@@ -22,14 +22,16 @@ end
 
 subgraph Backend
 B <--> C{index.js}
-C <--> D{employeeRoutes.js}
-C <--> E{employerRoutes.js}
+C <--> D{loginRoutes.js}
+C <--> E{employeeRoutes.js}
+C <--> F{employerRoutes.js}
 
 end
 
 subgraph MongoDB Database
-D <--> F[(Database)]
-E <--> F[(Database)]
+D <--> G[(Database)]
+E <--> G[(Database)]
+F <--> G[(Database)]
 
 end
 ```
