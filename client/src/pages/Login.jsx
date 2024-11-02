@@ -9,6 +9,8 @@ function Login() {
   const [inputEmail, setInputEmail] = useState('');
   const [errorEmail, setErrorEmail] = useState('Please enter a valid email');
 
+  const [errorAccount, setErrorAccount] = useState('');
+
   const handleInputChangePassword = (e) => {
     const value = e.target.value;
     setInputPassword(value);
@@ -34,25 +36,29 @@ function Login() {
       setErrorEmail('');
     }
   };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await axios.post('http://localhost:4000/api/login/login',
-      {
-        email: inputEmail,
-        password: inputPassword,
+    try {
+      setErrorAccount('');
+      e.preventDefault();
+      const response = await axios.post('http://localhost:4000/api/login/login',
+        {
+          email: inputEmail,
+          password: inputPassword,
+        }
+      )
+      const data = response.data;
+      localStorage.setItem('userType', JSON.stringify(response.data.userType));
+      localStorage.setItem('user', JSON.stringify(response.data.data));
+      if (response.data.userType === 'employee') {
+        window.location.href = '/employee';
+      } else if (response.data.userType === 'employer') {
+        window.location.href = '/employer';
       }
-    )
-    const data = response.data;
-    localStorage.setItem('userType', JSON.stringify(response.data.userType));
-    localStorage.setItem('user', JSON.stringify(response.data.data));
-    if (response.data.userType === 'employee') {
-      window.location.href = '/employee';
-    } else if (response.data.userType === 'employer') {
-      window.location.href = '/employer';
+    } catch (error) {
+      setErrorAccount('There is no account with these credentials.');
     }
   };
-
-
 
   return (
     <div
@@ -60,8 +66,15 @@ function Login() {
     >
       <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
 
-        <form className="row g-3" onSubmit={handleSubmit}>
-          <p className="lead text-center">Login to your account</p>
+        <form className="row g-1" onSubmit={handleSubmit}>
+          <div className="text-center mb-3">
+            <p className="lead">Login to your account</p>
+          </div>
+          {errorAccount && (
+            <div className="text-danger text-center mb-3">
+              {errorAccount}
+            </div>
+          )}
           <div className="col-md-6" >
             <div className="form-label">Email</div>
             <input className="form-control" placeholder="Email" value={inputEmail}

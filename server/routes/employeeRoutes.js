@@ -7,7 +7,7 @@ const{
     registerEmployee,
 } = require('../controllers/employeeController')
 
-router.get('/getEmployeeById', getEmployeeById)
+router.get('/getEmployeeById:id', getEmployeeById)
 router.put('/register', registerEmployee)
 
 module.exports = router;
