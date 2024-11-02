@@ -11,10 +11,10 @@ function Register() {
   const [positionsList, setPositionsList] = useState('');
 
 
-  const [errorPassword, setErrorPassword] = useState('Password is required');
-  const [errorEmail, setErrorEmail] = useState('Please enter a valid email');
-  const [errorCompany, setErrorCompany] = useState('Company Name is required');
-  const [errorList, setErrorList] = useState('Companys List of positions is required');
+  const [errorPassword, setErrorPassword] = useState('');
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorCompany, setErrorCompany] = useState('');
+  const [errorList, setErrorList] = useState('');
 
   const handleInputChangePassword = (e) => {
     const value = e.target.value;
