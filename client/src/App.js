@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home.jsx'
+import Signup from './pages/Signup.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
+
 function App() {
   /*
    <BrowserRouter>
@@ -11,22 +15,14 @@ function App() {
     </BrowserRouter>
   */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<Register />} /> {/*employers*/}
+        <Route path='/login' element={<Login />} /> {/*employees and employers*/}
+        <Route path='/signup/:id' element={<Signup />} /> {/*employees*/}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
