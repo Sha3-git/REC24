@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 function Employer() {
   const [sendOnboarding, setSendOnboarding] = useState(false);
 
@@ -9,6 +9,11 @@ function Employer() {
   const closeModal = () => setShowModal(false);
 
   const updateOnboarding = () => setSendOnboarding(false);
+
+  const handleSubmit = (e)=>{
+    e.preventDefaut();
+    axios.post("http://localhost:4000/api/employers/register")
+  }
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
@@ -53,10 +58,6 @@ function Employer() {
       <div class="form-label">Email address</div>
       <input class="form-control" type="email" placeholder="Enter email" />
 
-    </div>
-    <div className="col-md-6" controlId="formBasicPassword">
-      <div class="form-label">Password</div>
-      <input class="form-control" type="password" placeholder="Password" />
     </div>
 
     <button type="submit" class="btn btn-primary mb-3 ">Register for your company</button>
