@@ -1,6 +1,8 @@
 const Employee = require('../models/employee');
 
-const createUser = async (req, res) => {
+const createEmployee = async (req, res) => {
+    const {first_name, last_name, email, password, company_id} = req.body;
+    var userToken = null;
     const transporter = nodemailer.createTransport({
         host: 'kosichi.ca',
         port: 465,
@@ -11,8 +13,6 @@ const createUser = async (req, res) => {
         },
       });
 
-    const {first_name, last_name, email, password, company_id} = req.body;
-    var userToken = null;
 
     try{
         const newEmployer = new Employee({
