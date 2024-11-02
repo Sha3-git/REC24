@@ -19,3 +19,11 @@ const port = 4000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+const cors = require('cors');
+// Allow all origins
+app.use(cors());
+// Allow specific origin(s)
+app.use(cors({
+  origin: 'https://yourdeployedsite.com'
+}))
