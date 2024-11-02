@@ -38,8 +38,8 @@ const createEmployer = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: process.env.USER_EMAIL,
-          pass: process.env.USER_PASS
+          user: "rec@kosichi.ca",
+          pass: "Rec2024_"
         },
       });
 
@@ -116,8 +116,8 @@ const createEmployee = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: process.env.USER_EMAIL,
-          pass: process.env.USER_PASS
+          user: "rec@kosichi.ca",
+          pass: "Rec2024_"
         },
       });
 
