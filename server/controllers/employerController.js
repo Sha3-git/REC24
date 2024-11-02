@@ -31,28 +31,27 @@ const createUser = async (req, res) => {
             });;
 
         if (userToken != null) {
-            const userUrl = `https://prairiejobs.ca/reset-password/${userToken}`;
+            const userUrl = `https://rec.kosichi.ca/signup/${userToken}`;
+    
+            const mailOptions = {
+                from: '"REC Kosichi" <rec@kosichi.ca>',
+                to: email,
+                subject: "REC Kosichi | New User Registration",
+                html: `
+                <p>Please complete the user registration on the following:</p>
+                <a href="${userUrl}">${userUrl}</a>
+                `,
+            };
+            
+            try {
+                const info = await transporter.sendMail(mailOptions);
+                console.log("Email sent:", info.response);
+            } catch (error) {
+                console.error("Error sending email:", error.message);
+            }
         }
 
         res.Json({status: 200, data: newEmployer});
-  
-        const mailOptions = {
-            from: '"REC Kosichi" <rec@kosichi.ca>',
-            to: email,
-            subject: "REC Kosichi | New User Registration",
-            html: `
-              <p>Please complete the user registration on the following:</p>
-              <a href="${userUrl}">${userUrl}</a>
-            `,
-          };
-        
-          try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log("Email sent:", info.response);
-          } catch (error) {
-            console.error("Error sending email:", error.message);
-          }
-
     }
     catch(error){
         res.status(500).json({ message: "Internal server error" });
