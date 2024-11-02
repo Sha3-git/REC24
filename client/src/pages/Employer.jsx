@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 function Employer() {
   const [sendOnboarding, setSendOnboarding] = useState(false);
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
-
+  const [employees, setEmployees] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
 
@@ -14,6 +14,29 @@ function Employer() {
   const updateOnboarding = () => setSendOnboarding(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
+
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await fetch(`http://localhost:4000/api/employers/getEmployeesByEmployerId/${user.company_id}`);
+        const data = await response.json();
+        if (response.ok) {
+          setEmployees(data.data);
+        } else {
+          console.error('Error fetching employees:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching employees:', error);
+      }
+    };
+
+    fetchEmployees();
+  }, [user.company_id]);
+
+
+
+
   console.log(user);
   const handleSubmit = (e)=>{
     axios.post("http://localhost:4000/api/employers/create", {
@@ -36,7 +59,13 @@ function Employer() {
         <div className="row g-3">
           <div className="col-md-6">
             <div className="form-label">Positions Available</div>
-            <div className="form-label">List positions</div>
+            <ul className="list-group">
+              {employees.map(employee => (
+                <li key={employee._id} className="list-group-item">
+                  {employee.first_name} {employee.last_name} - {employee.email}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="col-md-6">
