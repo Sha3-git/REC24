@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Register() {
   const navigate = useNavigate();
@@ -15,17 +16,11 @@ function Register() {
     const roles = positionsList.split(',').map(role => role.trim());
 
     try {
-      const response = await fetch('/api/employers/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const response = await axios.post('/api/employers/register', {
           company_name: companyName,
           roles,
           email,
           password
-        }),
       });
 
       const data = await response.json();
@@ -36,7 +31,7 @@ function Register() {
         alert(`Error: ${data.message}`);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.log("Error submitting form:", error);
     }
   };
 
