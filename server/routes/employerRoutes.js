@@ -9,8 +9,8 @@ const {
     promoteEmployees
 } = require("../controllers/employerController");
 
-router.get('getEmployerById', getEmployerById)
-router.get('getEmployerById', getEmployeesByEmployerId)
+router.get('/getEmployerById', getEmployerById)
+router.get('/getEmployeesByEmployerId', getEmployeesByEmployerId)
 router.post('/create', createEmployee);
 router.post('/register', createEmployer);
 router.put('/promote', promoteEmployees)
