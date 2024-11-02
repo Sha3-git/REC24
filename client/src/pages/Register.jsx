@@ -17,14 +17,14 @@ function Register() {
   const [errorList, setErrorList] = useState('Companys List of positions is required');
 
   const handleInputChangePassword = (e) => {
-      const value = e.target.value;
-      setPassword(value);
+    const value = e.target.value;
+    setPassword(value);
 
-      if (!value.trim()) {
-          setErrorPassword('Password is required');
-      } else {
-          setErrorPassword('');
-      }
+    if (!value.trim()) {
+      setErrorPassword('Password is required');
+    } else {
+      setErrorPassword('');
+    }
   };
 
   const handleInputChangeCompany = (e) => {
@@ -32,37 +32,37 @@ function Register() {
     setCompanyName(value);
 
     if (!value.trim()) {
-        setErrorCompany('Company Name is required');
+      setErrorCompany('Company Name is required');
     } else {
-        setErrorCompany('');
+      setErrorCompany('');
     }
-};
+  };
 
-const handleInputChangeList = (e) => {
-  const value = e.target.value;
-  setPositionsList(value);
+  const handleInputChangeList = (e) => {
+    const value = e.target.value;
+    setPositionsList(value);
 
-  if (!value.trim()) {
+    if (!value.trim()) {
       setErrorList('Companys List of positions is required');
-  } else {
+    } else {
       setErrorList('');
-  }
-};
+    }
+  };
 
   const isEmailValid = (email) => {
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      return emailPattern.test(email);
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
   };
 
   const handleInputChangeEmail = (e) => {
-      const value = e.target.value;
-      setEmail(value);
+    const value = e.target.value;
+    setEmail(value);
 
-      if (!isEmailValid(value)) {
-          setErrorEmail('Please enter a valid email');
-      } else {
-          setErrorEmail('');
-      }
+    if (!isEmailValid(value)) {
+      setErrorEmail('Please enter a valid email');
+    } else {
+      setErrorEmail('');
+    }
   };
 
 
@@ -74,36 +74,36 @@ const handleInputChangeList = (e) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!errorPassword && !errorEmail && !errorCompany && !errorList) {
-    
-    try {
-      const roles = positionsList.split(',').map(role => role.trim());
 
-      const response = await fetch("http://localhost:4000/api/employers/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          company_name: companyName,
-          roles,
-          email,
-          password
-        }),
-      });
+      try {
+        const roles = positionsList.split(',').map(role => role.trim());
 
-      if (response.ok) {
-        const data = await response.json();
-        alert("Employer created successfully!");
-        navigate("/login");
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message || 'An error occurred'}`);
+        const response = await fetch("http://localhost:4000/api/employers/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            company_name: companyName,
+            roles,
+            email,
+            password
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          alert("Employer created successfully!");
+          navigate("/login");
+        } else {
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message || 'An error occurred'}`);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert('Network error: ' + error.message);
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert('Network error: ' + error.message);
     }
-  }
   };
 
 
@@ -123,8 +123,8 @@ const handleInputChangeList = (e) => {
               placeholder="Enter company name"
               value={companyName}
               onChange={handleInputChangeCompany}
-          />
-          {errorCompany && <div className="text-danger">{errorCompany}</div>}
+            />
+            {errorCompany && <div className="text-danger">{errorCompany}</div>}
 
           </div>
           <div className="col-md-6">
@@ -134,9 +134,9 @@ const handleInputChangeList = (e) => {
               type="email"
               placeholder="Enter email"
               value={email}
-              onChange={ handleInputChangeEmail}
+              onChange={handleInputChangeEmail}
             />
-             {errorEmail && <div className="text-danger">{errorEmail}</div>}
+            {errorEmail && <div className="text-danger">{errorEmail}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label">Password</label>
@@ -145,7 +145,7 @@ const handleInputChangeList = (e) => {
               type="password"
               placeholder="Password"
               value={password}
-              onChange= {handleInputChangePassword}
+              onChange={handleInputChangePassword}
             />
             {errorPassword && <div className="text-danger">{errorPassword}</div>}
 
@@ -157,8 +157,8 @@ const handleInputChangeList = (e) => {
               placeholder="Enter company positions, separated by a comma"
               value={positionsList}
               onChange={handleInputChangeList}
-          />
-          {errorList && <div className="text-danger">{errorList}</div>}
+            />
+            {errorList && <div className="text-danger">{errorList}</div>}
 
           </div>
           <button type="submit" className="btn btn-primary mb-0">
