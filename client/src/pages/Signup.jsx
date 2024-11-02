@@ -11,23 +11,13 @@ function Signup() {
     <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px"}}>
      
     <form class="row g-3">
-    <div className="col-md-6"  >
-      <div class="form-label">First Name</div>
-      <input class="form-control" type="firstName" placeholder="First Name" />
 
-    </div>
-    <div className="col-md-6" >
-      <div class="form-label">Last Name</div>
-      <input class="form-control" type="lastName" placeholder="Last Name" />
-    </div>
-
-     <div className="col-md-6"  >
-      <div class="form-label">Email address</div>
-      <input class="form-control" type="email" placeholder="Enter email" />
-
-    </div>
     <div className="col-md-6" controlId="formBasicPassword">
       <div class="form-label">Password</div>
+      <input class="form-control" type="password" placeholder="Password" />
+    </div>
+    <div className="col-md-6" controlId="formBasicPassword">
+      <div class="form-label">Re-Enter Password</div>
       <input class="form-control" type="password" placeholder="Password" />
     </div>
 
