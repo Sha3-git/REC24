@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const Employee = require('../models/employee');
 const Employer = require('../models/employer');
 
@@ -15,14 +17,22 @@ const createEmployer = async (req, res) => {
       });
 
     try{
-        const newEmployer = new Employee({
+        const existingEmployer = await Employer.findOne({ email });
+        if (existingEmployer) {
+            return res.status(400).json({ message: "An employer with this email already exists." });
+        }
+
+        console.log(roles);
+
+        const newEmployer = new Employer({
             company_name: company_name,
             roles: roles,
             email: email,
             password: password
         })  
 
-        newEmployer.save()
+        await newEmployer.save()
+        console.log("Employer saved successfully:", newEmployer);
 
         const mailOptions = {
             from: '"REC Kosichi" <rec@kosichi.ca>',
@@ -40,11 +50,20 @@ const createEmployer = async (req, res) => {
             console.error("Error sending email:", error.message);
         }
 
+<<<<<<< Updated upstream
         res.json({status: 200, data: newEmployer});
+=======
+        return res.status(200).json({ status: 200, data: newEmployer });
+>>>>>>> Stashed changes
     }
-    catch(error){
-        res.status(500).json({ message: "Internal server error" });
+    catch (error) {
+        if (error.code === 11000) {
+            console.error("Duplicate key error:", error.message);
+            return res.status(400).json({ message: "An employer with this email already exists." });
+        }
+
         console.error(error);
+        res.status(500).json({ message: "Internal server error" });
     }
 }
 
