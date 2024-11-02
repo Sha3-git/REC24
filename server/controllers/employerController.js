@@ -161,7 +161,7 @@ const createEmployee = async (req, res) => {
             }
         }
 
-        res.json({status: 200, data: newEmployer});
+        res.json({status: 200, data: newEmployee});
     }
     catch(error){
         res.status(500).json({ message: "Internal server error" });
