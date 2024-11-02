@@ -4,10 +4,10 @@ import { useState } from "react";
 function Login() {
 
   const [inputPassword, setInputPassword] = useState('');
-  const [errorPassword, setErrorPassword] = useState('Password is required');
+  const [errorPassword, setErrorPassword] = useState('');
 
   const [inputEmail, setInputEmail] = useState('');
-  const [errorEmail, setErrorEmail] = useState('Please enter a valid email');
+  const [errorEmail, setErrorEmail] = useState('');
 
   const [errorAccount, setErrorAccount] = useState('');
 

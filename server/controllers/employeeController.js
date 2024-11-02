@@ -19,7 +19,7 @@ const getEmployeeById = async (req, res) => {
 const registerEmployee = async(req, res)=>{
     const {id, password} = req.body;
     try{
-        const result = Employee.findByIdAndUpdate(id, {password: password});
+        const result = await Employee.findByIdAndUpdate(id, {password: password});
         if (!result) {
             return res.json({ status: 404, message: "No employees found" });
         }
