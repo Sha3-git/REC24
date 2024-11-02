@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from "../components/Header"
 
 function Register() {
+  const navigate = useNavigate();
+
   const [companyName, setCompanyName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
