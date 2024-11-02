@@ -4,14 +4,15 @@ const Employer = require('../models/employer');
 
 const createEmployer = async (req, res) => {
     const {company_name, roles, email, password} = req.body;
-
     try{
         const newEmployer = new Employee({
-            first_name: first_name,
-            last_name: last_name,
+            company_name: company_name,
+            roles: roles,
             email: email,
-            company_id: company_id
+            password: password
         })  
+
+        newEmployer.save()
 
         res.Json({status: 200, data: newEmployer});
     }
@@ -20,6 +21,7 @@ const createEmployer = async (req, res) => {
         console.error(error);
     }
 }
+
 
 const createEmployee = async (req, res) => {
     const {first_name, last_name, email, password, company_id} = req.body;
@@ -96,6 +98,7 @@ const promoteEmployees = async(req, res) =>{
     }
 }
 module.exports = {
+    createEmployer,
     createEmployee,
     promoteEmployees
 }
