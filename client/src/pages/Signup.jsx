@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Signup() {
 
   const [inputPassword, setInputPassword] = useState('');
-  const [errorPassword, setErrorPassword] = useState('Password is required');
+  const [errorPassword, setErrorPassword] = useState('');
 
   const [inputCheck, setInputCheck] = useState('');
-  const [errorCheck, setErrorCheck] = useState('Passwords do not match');
+  const [errorCheck, setErrorCheck] = useState('');
 
+  const {id} = useParams();
+  console.log(id)
   const handleInputChange1 = (e) => {
     const value = e.target.value;
     setInputPassword(value);
@@ -30,9 +33,18 @@ function Signup() {
       setErrorCheck('');
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!errorPassword && !errorCheck) {
+        const response = await axios.put('http://localhost:4000/api/employees/register',
+            {
+              id: id,
+              password: inputPassword,
+            }
+          )
+          if(response.data) {
+            window.location.href = '/login';
+          }
     }
   };
 
