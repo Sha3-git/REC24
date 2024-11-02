@@ -76,14 +76,19 @@ function Employer() {
     setEmail('');
     window.location.reload();
   }
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    window.location.href = '/';
+};
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "500px" }}>
-        <p className="lead">Welcome to your company name's dashboard!</p>
 
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <div className="p-5 bg-white shadow rounded" style={{ maxWidth: "800px" }} >
+      <p className="lead">Welcome to {user.company_name}'s dashboard!</p>
+        
         <div className="row g-3">
-          <div className="col-md-6">
+          <div className="col-md-12">
             <div className="form-label">Positions Available</div>
             <ul className="list-group">
               {employees.map(employee => (
@@ -127,8 +132,12 @@ function Employer() {
             </button>
           </div>
         </div>
+        <div className=" text-center">
+        <button onClick={handleLogout} className="btn btn-primary mt-5">Logout</button>
+        </div>
       </div>
-
+    
+  
       {showModal && (
         <div className="modal show d-flex justify-content-center align-items-center vh-100" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
@@ -162,7 +171,9 @@ function Employer() {
           </div>
         </div>
       )}
+        
     </div>
+   
   );
 }
 
