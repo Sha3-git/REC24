@@ -22,6 +22,11 @@ const createEmployer = async (req, res) => {
             return res.status(400).json({ message: "An employer with this email already exists." });
         }
 
+        const existingEmployee = await Employee.findOne({ email });
+        if (existingEmployee) {
+            return res.status(400).json({ message: "An employee with this email already exists." });
+        }
+
         console.log(roles);
 
         const newEmployer = new Employer({
@@ -67,6 +72,17 @@ const createEmployer = async (req, res) => {
 const createEmployee = async (req, res) => {
     console.log("Creating Employee.")
     const {first_name, last_name, email, password, company_id} = req.body;
+
+    const existingEmployee = await Employee.findOne({ email });
+    if (existingEmployee) {
+        return res.status(400).json({ message: "An employee with this email already exists." });
+    }
+
+    const existingEmployer = await Employer.findOne({ email });
+    if (existingEmployer) {
+        return res.status(400).json({ message: "An employer with this email already exists." });
+    }
+
     var userToken = null;
     const transporter = nodemailer.createTransport({
         host: 'kosichi.ca',
