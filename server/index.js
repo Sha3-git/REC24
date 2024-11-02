@@ -28,5 +28,7 @@ app.use(cors({
 }))
 
 const EmployerRoutes = require('./routes/employerRoutes');
+const EmployeeRoutes = require('./routes/employeeRoutes');
 
 app.use('/api/employers', EmployerRoutes);
+app.use('/api/employees', EmployeeRoutes);
