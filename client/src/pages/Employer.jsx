@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 function Employer() {
   const [sendOnboarding, setSendOnboarding] = useState(false);
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('')
+  const [email, setEmail] = useState('')
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
@@ -10,9 +13,15 @@ function Employer() {
 
   const updateOnboarding = () => setSendOnboarding(false);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
   const handleSubmit = (e)=>{
-    e.preventDefaut();
-    axios.post("http://localhost:4000/api/employers/register")
+    axios.post("http://localhost:4000/api/employers/create", {
+      first_name: first,
+      last_name: last,
+      email: email,
+      company_id: user.company_id 
+    })
   }
 
   return (
@@ -46,25 +55,20 @@ function Employer() {
                 <form class="row g-3">
                   <div className="col-md-6"  >
                     <div class="form-label">First Name</div>
-                    <input class="form-control" type="firstName" placeholder="First Name" />
+                    <input class="form-control" type="firstName" placeholder="First Name" value={first} onChange={(e)=>{setFirst(e.target.value)}}/>
 
                   </div>
                   <div className="col-md-6" >
                     <div class="form-label">Last Name</div>
-                    <input class="form-control" type="lastName" placeholder="Last Name" />
+                    <input class="form-control" type="lastName" placeholder="Last Name" value={last} onChange={(e)=>{setLast(e.target.value)}}/>
                   </div>
 
                   <div className="col-md-6"  >
                     <div class="form-label">Email address</div>
-                    <input class="form-control" type="email" placeholder="Enter email" />
-
-                  </div>
-                  <div className="col-md-6" controlId="formBasicPassword">
-                    <div class="form-label">Password</div>
-                    <input class="form-control" type="password" placeholder="Password" />
+                    <input class="form-control" type="email" placeholder="Enter email" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mb-3 ">Register for your company</button>
+                  <button type="button" class="btn btn-primary mb-3 " onClick={handleSubmit}>Register for your company</button>
                 </form>
 
               </div>
