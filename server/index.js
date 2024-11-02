@@ -28,3 +28,4 @@ const LoginRoutes = require('./routes/loginRoutes');
 
 app.use('/api/employers', EmployerRoutes);
 app.use('/api/employees', EmployeeRoutes);
+app.user('/api/login', LoginRoutes);
