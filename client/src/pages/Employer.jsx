@@ -22,6 +22,10 @@ function Employer() {
       email: email,
       company_id: user.company_id 
     })
+    setShowModal(false);
+    setFirst('');
+    setLast('');
+    setEmail('');
   }
 
   return (
