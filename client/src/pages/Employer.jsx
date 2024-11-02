@@ -34,6 +34,7 @@ function Employer() {
   const updateOnboarding = () => setSendOnboarding(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
+  const roles = user.roles;
 
 
   useEffect(() => {
@@ -96,7 +97,7 @@ function Employer() {
                       Select Rank
                     </button>
                     <ul className="dropdown-menu" aria-labelledby={`dropdown-${employee._id}`}>
-                      {[1, 2, 3, 4, 5].map(rank => (
+                      {roles.map(rank => (
                         <li key={rank}>
                           <button
                             className="dropdown-item"
