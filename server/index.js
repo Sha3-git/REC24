@@ -12,7 +12,7 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({}));
+app.use(cors());
 
 const port = 4000;
 
@@ -20,12 +20,7 @@ app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-// Allow all origins
-app.use(cors());
-// Allow specific origin(s)
-app.use(cors({
-  origin: 'https://yourdeployedsite.com'
-}))
+
 
 const EmployerRoutes = require('./routes/employerRoutes');
 const EmployeeRoutes = require('./routes/employeeRoutes');
