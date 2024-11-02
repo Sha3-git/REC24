@@ -117,7 +117,7 @@ const promoteEmployees = async(req, res) =>{
     try{
         const result = await Employee.findByIdAndUpdate(id, {role: role});
         if (!result) {
-            return res.json({ status: 404, message: "No time cards found" });
+            return res.json({ status: 404, message: "No employees found" });
         }
         res.json({status: 200, data: result})
     }catch(error){
