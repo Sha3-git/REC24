@@ -143,7 +143,7 @@ const createEmployee = async (req, res) => {
         if (userToken != null) {
             // const userUrl = `https://rec.kosichi.ca/signup/${userToken}`;
             // TODO
-            const userUrl = `https://localhost:3000/signup/${userToken}`;
+            const userUrl = `http://localhost:3000/signup/${userToken}`;
 
             const mailOptions = {
                 from: '"REC Kosichi" <rec@kosichi.ca>',
