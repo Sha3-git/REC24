@@ -1,4 +1,25 @@
 const Employee = require('../models/employee');
+const Employer = require('../models/employer');
+
+
+const createEmployer = async (req, res) => {
+    const {company_name, roles, email, password} = req.body;
+
+    try{
+        const newEmployer = new Employee({
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            company_id: company_id
+        })  
+
+        res.Json({status: 200, data: newEmployer});
+    }
+    catch(error){
+        res.status(500).json({ message: "Internal server error" });
+        console.error(error);
+    }
+}
 
 const createEmployee = async (req, res) => {
     const {first_name, last_name, email, password, company_id} = req.body;
@@ -15,16 +36,16 @@ const createEmployee = async (req, res) => {
 
 
     try{
-        const newEmployer = new Employee({
+        const newEmployee = new Employee({
             first_name: first_name,
             last_name: last_name,
             email: email,
             company_id: company_id
         })  
 
-        newEmployer.save().then(
-            savedEmployer => {
-                userToken = savedEmployer._id;
+        newEmployee.save().then(
+            savedEmployee => {
+                userToken = savedEmployee._id;
             })
             .catch(error => {
                 console.error(error);
