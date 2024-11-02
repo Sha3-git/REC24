@@ -77,7 +77,7 @@ function Login() {
 
           </div>
 
-          <button type="button" className="btn btn-primary mb-3" onClick={handleSubmit}>Login</button>
+          <button type="button" className="btn btn-primary mb-0" onClick={handleSubmit}>Login</button>
           <button type="button" className="btn btn-secondary mb-3" onClick={() => window.location.href = '/'}>
             Back to Home
           </button>
