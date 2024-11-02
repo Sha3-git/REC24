@@ -42,6 +42,7 @@ const loginEmployee = async(req, res)=>{
         console.log(error)
     }
 }
+
 module.exports = {
     getEmployeeById,
     registerEmployee,
