@@ -39,9 +39,6 @@ end
 ## 3. References
 
 1. [Bootstrap v5.3.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-2. [Node.js v23.1.0](https://nodejs.org/docs/latest/api/)
-3. [Express.js v4.18.2](https://expressjs.com/en/4x/api.html)
-4. [DotEnv v16.3.1](https://www.dotenv.org/docs/)
 
 Developed by:
 - [Maksim Sharoika](https://www.linkedin.com/in/maksim-sharoika-713a69162/) 
